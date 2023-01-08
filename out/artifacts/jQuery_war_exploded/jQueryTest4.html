@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>省市联动</title>
+</head>
+<body>
+<script type="text/javascript" src="js/jQuery-3.6.3.js"></script>
+<script type="text/javascript">
+    $(function (){
+        $.ajax({
+            type:"GET",
+            url:"/jQuery/jQueryTest4",
+            data:"t=" + new Date().getTime(),
+            async:true,
+            dataType:"json",
+            success:function (jsonArr){
+                $.each(jsonArr,function (index,element){
+                    $("#province").append("<option value='"+element.id+"'>"+element.name+"</option>")
+                    $("#abbreviation").append("<option value='"+element.id+"'>"+element.abbreviation+"</option>")
+                    $("#provincialCapital").append("<option value='"+element.id+"'>"+element.provincialCapital+"</option>")
+                })
+                $("#province").change(function (){
+                    var obj = jsonArr[this.value - 1]
+                    $("#abbreviation").empty()
+                    $("#abbreviation").append("<option value='"+obj.id+"'>"+obj.abbreviation+"</option>")
+                    $("#provincialCapital").empty()
+                    $("#provincialCapital").append("<option value='"+obj.id+"'>"+obj.provincialCapital+"</option>")
+                })
+            }
+        })
+        $("#province").change(function (){
+            var obj = $("#province>option:selected");
+            var proviceId = obj.val()
+            $.ajax({
+                type: "GET",
+                url:"/jQuery/jQueryTest4",
+                data:"t=" + new Date().getTime() + "&proviceId=" + proviceId,
+                async:true,
+                dataType:"json",
+                success:function (jsonArr){
+                    $("#city").empty()
+                    $("#city").append("<option value=\"00\">请选择市</option>")
+                    $.each(jsonArr,function (index,element){
+                        $("#city").append("<option value='"+index+"'>"+element.name+"</option>")
+                    })
+                }
+            })
+        })
+    })
+</script>
+<table>
+    <tr>
+        <td>
+            <select id="province">
+                <option value="00">请选择省</option>
+            </select>
+        </td>
+        <td>
+            <select id="abbreviation">
+                <option value="00">简称</option>
+            </select>
+        </td>
+        <td>
+            <select id="provincialCapital">
+                <option value="00">省会</option>
+            </select>
+        </td>
+        <td>
+            <select id="city">
+                <option value="00">请选择市</option>
+            </select>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

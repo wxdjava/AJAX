@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript" src="js/jQuery-1.0.0.js"></script>
+<script type="text/javascript">
+    $(function (){
+        $.ajax({
+            type : "GET",
+            url : "/FirstAjax/ajaxTest7",
+            data : "t=" + new Date().getTime(),
+            async : true,
+            success : function (jsonArr){
+                var html = "<option value=''>--请选择省份--</option>"
+                for (var i = 0; i < jsonArr.length; i++) {
+                    var area = jsonArr[i]
+                    html += "<option value='"+area.code+"'>"+area.name+"</option>"
+                }
+                $("#province").html(html)
+            }
+        })
+        $("#province").change(function (){
+            $.ajax({
+                type : "GET",
+                url : "/FirstAjax/ajaxTest7",
+                data : "t=" + new Date().getTime() + "&pcode=" + this.value,
+                async : true,
+                success : function (jsonArr){
+                    var html = "<option value=''>--请选择市--</option>"
+                    for (var i = 0; i < jsonArr.length; i++) {
+                        var area = jsonArr[i]
+                        html += "<option value='"+area.code+"'>"+area.name+"</option>"
+                    }
+                    $("#city").html(html)
+                }
+            })
+        })
+        $("#city").change(function (){
+            $.ajax({
+                type : "GET",
+                url : "/FirstAjax/ajaxTest7",
+                data : "t=" + new Date().getTime() + "&pcode=" + this.value,
+                async : true,
+                success : function (jsonArr){
+                    var html = "<option value=''>--请选择区--</option>"
+                    for (var i = 0; i < jsonArr.length; i++) {
+                        var area = jsonArr[i]
+                        html += "<option value='"+area.code+"'>"+area.name+"</option>"
+                    }
+                    $("#district").html(html)
+                }
+            })
+        })
+    })
+</script>
+<select name="area" id="province">
+
+</select>
+<select name="area" id="city">
+
+</select>
+<select name="area" id="district">
+
+</select>
+</body>
+</html>

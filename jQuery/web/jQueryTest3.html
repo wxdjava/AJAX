@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript" src="js/jQuery-3.6.3.js"></script>
+<script type="text/javascript">
+    $(function (){
+        $("#btn1").click(function (){
+            alert($("div").text())
+        })
+        $("#btn2").click(function (){
+            $("div").text("div")
+        })
+        $("#btn3").click(function (){
+            alert($("img").attr("src"))
+            /*alert($("button").attr("id"))*/
+        })
+        $("#btn4").click(function (){
+            $("img").attr("src","img/3.jpg")
+        })
+        $("#btn5").click(function (){
+            $("select").remove()
+        })
+        $("#btn6").click(function (){
+            $("select").empty()
+        })
+        $("#btn7").click(function (){
+            $("#city").append("<option value=\"运城\">运城</option>")
+        })
+        $("#btn8").click(function (){
+            alert($("#city").html())
+        })
+        $("#btn9").click(function (){
+            $("#city").html("<option value=\"运城\">运城</option>")
+        })
+        $("#btn10").click(function (){
+            var arr = [5,6,7]
+            $.each(arr,function (index,element){
+                alert("index=" + index + "  element=" + element)
+            })
+        })
+        $("#btn11").click(function (){
+            var json = {"name":"zhangsan","password":"123","age":21}
+            $.each(json,function (index,element){
+                alert("index=" + index + "  element=" + element)
+            })
+        })
+        $("#btn12").click(function (){
+            /*var obj = $("select")
+            $.each(obj,function (index,element){
+                alert("index=" + index + "  element=" + element.value)
+            })*/
+            $("option").each(function (index,element){
+                alert("index=" + index + "  element=" + element.value)
+            })
+        })
+    })
+</script>
+<div>第一个div</div>
+<div>第二个div</div>
+<div>第三个div</div>
+<img src="img/1.jpg" width="100px" height="100px">
+<br>
+<button id="btn1">text()函数</button>
+<button id="btn2">text(参数)函数</button>
+<button id="btn3">attr()函数</button>
+<button id="btn4">attr(参数)函数</button>
+<br><br>
+
+<select id="province">
+    <option value="山西">山西</option>
+    <option value="山东">山东</option>
+    <option value="河北">河北</option>
+    <option value="河南">河南</option>
+</select>
+<select id="city">
+    <option value="临汾">临汾</option>
+    <option value="吕梁">吕梁</option>
+</select>
+<br>
+<button id="btn5">remove()函数</button>
+<button id="btn6">empty()函数</button>
+<button id="btn7">append()函数</button>
+<button id="btn8">html()函数</button>
+<button id="btn9">html(参数)函数</button>
+<button id="btn10">each()函数循环普通数组</button>
+<button id="btn11">each()函数循环json</button>
+<button id="btn12">each()函数循环dom</button>
+</body>
+</html>

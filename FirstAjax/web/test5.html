@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>显示全部学生</title>
+</head>
+<body>
+<script type="text/javascript">
+    window.onload = function (){
+        document.getElementById("mybtn").onclick = function (){
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function (){
+                if (this.readyState == 4) {
+                    if (this.status == 200) {
+                        var xmlDoc = this.responseXML;
+                        var students = xmlDoc.getElementsByTagName("student");
+                        var html = "";
+                        for (var i = 0; i < students.length; i++) {
+                            var student = students[i]
+                            html += "<tr>"
+                            html += "<td>"+(i+1)+"</td>"
+                            var childNodes = student.childNodes;
+                            for (var j = 0; j < childNodes.length; j++) {
+                                var node = childNodes[j]
+                                if (node.nodeName == "name") {
+                                    html += "<td>"+node.textContent+"</td>"
+                                }
+                                if (node.nodeName == "age") {
+                                    html += "<td>"+node.textContent+"</td>"
+                                }
+                            }
+                            html += "</tr>"
+                        }
+                        document.getElementById("mytbody").innerHTML = html
+                    } else {
+                        alert(this.status)
+                    }
+                }
+            }
+            xhr.open("GET","/FirstAjax/ajaxTest5",true)
+            xhr.send()
+        }
+    }
+</script>
+<button id="mybtn">点击显示全部学生</button>
+<table border="1px" height="30px">
+    <tr>
+        <th>序号</th>
+        <th>姓名</th>
+        <th>年龄</th>
+    </tr>
+    <tbody id="mytbody"></tbody>
+</table>
+
+</body>
+</html>

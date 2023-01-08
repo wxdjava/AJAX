@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>显示全部学生</title>
+</head>
+<body>
+<script type="text/javascript">
+    window.onload = function (){
+        document.getElementById("mybtn").onclick = function (){
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function (){
+                if (this.readyState == 4) {
+                    if (this.status == 200) {
+                        var stuList = JSON.parse(this.responseText);
+                        var html = ""
+                        for (var i = 0; i < stuList.length; i++) {
+                            var stu = stuList[i];
+                            html += "<tr>"
+                            html += "<td>"+(i+1)+"</td>"
+                            html += "<td>"+stu.name+"</td>"
+                            html += "<td>"+stu.sex+"</td>"
+                            html += "<td>"+stu.age+"</td>"
+                            html += "</tr>"
+                        }
+                        document.getElementById("mytbody").innerHTML = html
+                    } else {
+                        alert(this.status)
+                    }
+                }
+            }
+            xhr.open("GET","/FirstAjax/ajaxTest4",true)
+            xhr.send()
+        }
+    }
+</script>
+<button id="mybtn">点击显示全部学生</button>
+<table border="1px" height="30px">
+    <tr>
+        <th>序号</th>
+        <th>姓名</th>
+        <th>性别</th>
+        <th>年龄</th>
+    </tr>
+    <tbody id="mytbody"></tbody>
+</table>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AJAX</title>
+</head>
+<body>
+    <script type="text/javascript">
+        window.onload = function (){
+            document.getElementById("mybutton").onclick = function (){
+                console.log("hello!!!")
+                //第一步，创建Ajax核心对象
+                var xhr = new XMLHttpRequest();
+                //第二步，注册回调函数
+                xhr.onreadystatechange = function (){
+                    console.log(xhr.readyState);
+                    if (xhr.readyState == 4){
+                        console.log("响应结束了！");
+                        console.log(this.status);
+                        if (this.status == 404){
+                            alert("对不起，您访问的资源不存在！")
+                        } else if (this.status == 500){
+                            alert("内部资源不存在！请及时联系管理员！")
+                        } else if (this.status == 200){
+                            alert("访问成功！！！")
+                            document.getElementById("mydiv").innerHTML = this.responseText;
+                        }
+                    }
+                }
+                //第三步，开启通道
+                xhr.open("GET","/FirstAjax/ajaxrequest",true);
+                //第四步，发送请求
+                xhr.send();
+            }
+        }
+    </script>
+    <input type="button" value="hello ajax!" id="mybutton">
+    <div id="mydiv"></div>
+</body>
+</html>

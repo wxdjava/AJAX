@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript" src="js/jQuery-1.0.0.js"></script>
+<script type="text/javascript">
+    $(function (){
+        $("#btn").click(function (){
+            $.ajax({
+                type : "POST",
+                url : "/FirstAjax/ajaxTest6",
+                data : "username=" + $("#username").val(),
+                async : true,
+                success : function (json){
+                    $("#mydiv").html(json.username)
+                }
+            })
+        })
+    })
+</script>
+<button id="btn">发送ajax请求</button>
+用户名: <input type="text" id="username">
+<div id="mydiv"></div>
+</body>
+</html>

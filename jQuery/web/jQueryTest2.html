@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript" src="js/jQuery-3.6.3.js"></script>
+<script type="text/javascript">
+$(function (){
+    $("#btn1").click(function (){
+        var obj = $("div:first")
+        obj.css("background","red")
+    })
+    $("#btn2").click(function (){
+        $("div:last").css("background","green")
+    })
+    $("#btn3").click(function (){
+        $("div:eq(2)").css("background","blue")
+    })
+    $("#btn4").click(function (){
+        $("div:lt(3)").css("background","yellow")
+    })
+    $("#btn5").click(function (){
+        $("div:gt(2)").css("background","pink")
+    })
+
+
+    $("#mybtn1").click(function (){
+        $(":text:enabled").val("hello")
+    })
+    $("#mybtn2").click(function (){
+        var obj = $(":checkbox:checked")
+        for (var i = 0; i < obj.length; i++) {
+            /*alert(obj[i].value)*/
+            var $obj = $(obj[i])
+            alert($obj.val())
+        }
+    })
+    $("#mybtn3").click(function (){
+        alert($("select>option:selected").val())
+    })
+})
+</script>
+<input type="text" id="text1" value="text1"> <br>
+<input type="text" id="text2" value="text2" disabled> <br>
+<input type="text" id="text3" value="text3"> <br>
+<input type="text" id="text4" value="text4" disabled> <br>
+爱好：<input type="checkbox" value="吃饭">吃饭
+<input type="checkbox" value="睡觉" checked>睡觉
+<input type="checkbox" value="打豆豆" checked>打豆豆
+<br>
+下拉框
+<select name="" id="lang">
+    <option value="java">java</option>
+    <option value="c++">c++</option>
+    <option value="python" selected>python</option>
+</select>
+<br>
+<button id="mybtn1">所有可用text设置hello</button>
+<button id="mybtn2">显示被选中复选框的值</button>
+<button id="mybtn3">显示下拉列表选中的值</button>
+<div id="div1">我是第一个div</div>
+<div id="div2">我是第二个div</div>
+<div id="div3">我是第三个div</div>
+<div id="div4">我是第四个div</div>
+<div id="div5">我是第五个div</div>
+<div id="div6">我是第六个div</div>
+<input type="button" id="btn1" value="第一个div">
+<input type="button" id="btn2" value="最后一个div">
+<input type="button" id="btn3" value="第三个div">
+<input type="button" id="btn4" value="前三个div">
+<input type="button" id="btn5" value="后三个div">
+</body>
+</html>

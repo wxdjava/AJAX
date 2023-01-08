@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AJAX</title>
+</head>
+<body>
+    <script type="text/javascript">
+        var xhr = new XMLHttpRequest();
+        window.onload = function (){
+            document.getElementById("mybutton").onclick = function (){
+                xhr.onreadystatechange = callback();
+                xhr.open("GET","/FirstAjax/ajaxrequest",true);
+                xhr.send();
+            }
+        }
+
+        function callback(){
+            if (xhr.readyState == 4) {
+                if (xhr.status == 200) {
+                    document.getElementById("myspan").innerHTML = xhr.responseText;
+                } else {
+                    alert(xhr.status)
+                }
+            }
+        }
+    </script>
+    <button id="mybutton">发送get请求</button>
+    <span id="myspan"></span>
+</body>
+</html>

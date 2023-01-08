@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript" src="js/jQuery-1.0.0.js"></script>
+<script type="text/javascript">
+    $(function (){
+        $("#btn").click(function (){
+            alert($("#username").val())
+            $("#username").val("hehe")
+            $("#mydiv").html("<font color='red'>hello!!!</font>")
+        })
+    })
+</script>
+
+<button id="btn">hello</button>
+<br>
+<input type="text" id="username">
+<br>
+<div id="mydiv"></div>
+</body>
+</html>
