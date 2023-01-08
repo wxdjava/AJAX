@@ -16,5 +16,6 @@ public class Test {
         System.out.println("pull test");
         System.out.println("update project test");
         System.out.println("update gitee test");
+        System.out.println("update gitee test");
     }
 }
